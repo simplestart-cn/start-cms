@@ -1,0 +1,278 @@
+{
+    "icon": "dashboard",
+    "name": "core",
+    "title": "系统",
+    "entry": "/core/index/entry",
+    "summary": "系统核心模块",
+    "description": "简艺科技出品",
+    "version": "v1.0.0",
+    "licence": "Apache2.0",
+    "author": "Colber.Dun<colber@simplestart.cn>",
+    "namespace": "delivery",
+    "documentation": {
+        "guide": "使用者手册",
+        "admin": "管理员手册",
+        "developer": "开发者手册"
+    },
+    "dependencies": [],
+    "startcms": {
+        "min-version": "v1.0.0"
+    },
+    "auth": [
+        {
+            "icon": "dashboard",
+            "name": "core",
+            "title": "系统",
+            "node": "core",
+            "path": "/core",
+            "parent": "",
+            "sort": 7,
+            "menu": 1
+        },
+        {
+            "name": "core_account",
+            "title": "账户管理",
+            "node": "core/account",
+            "path": "/core/account",
+            "parent": "core",
+            "sort": 1,
+            "menu": 1
+        }
+    ],
+    "config": [
+        {
+            "group": "站点配置",
+            "title": "站点标志",
+            "type": "file-library",
+            "field": "logo",
+            "value": "",
+            "options": [],
+            "props": {
+                "limit": 1,
+                "library": false,
+                "returnIds": false
+            },
+            "default": "",
+            "locking": 1
+        },
+        {
+            "group": "站点配置",
+            "title": "站点名称",
+            "type": "input",
+            "field": "title",
+            "value": "StartCMS",
+            "options": [],
+            "props": {},
+            "default": "",
+            "locking": 1
+        },
+        {
+            "group": "站点配置",
+            "title": "站点域名",
+            "type": "input",
+            "field": "domain",
+            "value": "https://www.simplestart.cn",
+            "options": [],
+            "props": {
+                "placeholder": "http://或https://"
+            },
+            "default": "",
+            "locking": 1
+        },
+        {
+            "group": "站点配置",
+            "title": "服务理念",
+            "type": "input",
+            "field": "slogan",
+            "value": "为需求提供最简单有效的解决方案",
+            "options": [],
+            "props": {},
+            "default": "",
+            "locking": 1
+        },
+        {
+            "group": "站点配置",
+            "title": "备案号码",
+            "type": "input",
+            "field": "icp",
+            "value": "粤ICP备xxxxxxxx号",
+            "options": [],
+            "props": {},
+            "default": "",
+            "locking": 1
+        },
+        {
+            "group": "站点配置",
+            "title": "版权信息",
+            "type": "input",
+            "field": "copyright",
+            "value": "COPYRIGHT © 2017-2021 SIMPLESTART ALL RIGHTS RESERVED.",
+            "options": [],
+            "props": {},
+            "default": "",
+            "locking": 1
+        },
+        {
+            "group": "联系信息",
+            "title": "联系人",
+            "type": "input",
+            "field": "contact",
+            "value": "邓先生",
+            "options": [],
+            "props": {
+                "placeholder": ""
+            },
+            "default": "",
+            "locking": 1
+        },
+        {
+            "group": "联系信息",
+            "title": "联系电话",
+            "type": "input",
+            "field": "phone",
+            "value": "0769-33327398",
+            "options": [],
+            "props": {
+                "placeholder": "固话或手机号"
+            },
+            "default": "",
+            "locking": 1
+        },
+        {
+            "group": "联系信息",
+            "title": "联系邮箱",
+            "type": "input",
+            "field": "mail",
+            "value": "colber@simplestart.cn",
+            "options": [],
+            "props": {
+                "placeholder": "邮箱地址"
+            },
+            "default": "",
+            "locking": 1
+        },
+        {
+            "group": "联系信息",
+            "title": "联系地址",
+            "type": "input",
+            "field": "address",
+            "value": "",
+            "options": [],
+            "props": {
+                "placeholder": "联系地址"
+            },
+            "default": "",
+            "locking": 1
+        },
+        {
+            "group": "登陆注册",
+            "title": "开放注册",
+            "type": "radio",
+            "field": "open_register",
+            "value": 0,
+            "options": [
+                {
+                    "value": 0,
+                    "label": "否"
+                },
+                {
+                    "value": 1,
+                    "label": "是"
+                }
+            ],
+            "props": {},
+            "remark": "开放注册需完成短信应用的配置",
+            "default": 0,
+            "locking": true
+        },
+        {
+            "group": "登陆注册",
+            "title": "获取手机号",
+            "type": "radio",
+            "field": "auth_mobile",
+            "value": 0,
+            "options": [
+                {
+                    "value": 0,
+                    "label": "否"
+                },
+                {
+                    "value": 1,
+                    "label": "是"
+                }
+            ],
+            "props": {},
+            "remark": "移动端获取手机号需要小程序/公众号完成认证",
+            "default": 0,
+            "locking": true
+        },
+        {
+            "group": "登陆注册",
+            "title": "注册协议",
+            "type": "input",
+            "field": "protocal",
+            "value": "",
+            "options": [],
+            "props": {
+                "type": "textarea",
+                "rows": 5,
+                "placeholder": "用户登陆注册协议"
+            },
+            "default": "",
+            "locking": 1
+        },
+        {
+            "group": "主题颜色",
+            "title": "文字颜色",
+            "type": "ColorPicker",
+            "field": "text_color",
+            "value": "#ffffff",
+            "options": [],
+            "default": "#ffffff"
+        },
+        {
+            "group": "主题颜色",
+            "title": "背景颜色",
+            "type": "ColorPicker",
+            "field": "background_color",
+            "value": "#06478c",
+            "options": [],
+            "default": "#06478c"
+        },
+        {
+            "group": "主题颜色",
+            "title": "菜单位置",
+            "type": "radio",
+            "field": "layout",
+            "value": "top",
+            "options": [
+                {
+                    "value": "top",
+                    "label": "顶部"
+                },
+                {
+                    "value": "left",
+                    "label": "左侧"
+                }
+            ],
+            "props": {},
+            "default": 0,
+            "locking": true
+        },
+        {
+            "group": "主题颜色",
+            "title": "登陆背景",
+            "type": "file-library",
+            "field": "background_image",
+            "value": "",
+            "options": [],
+            "props": {
+                "limit": 1,
+                "library": false,
+                "returnIds": false
+            },
+            "default": "",
+            "locking": 1
+        }
+    ]
+}

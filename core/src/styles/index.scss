@@ -1,0 +1,341 @@
+@import './simplestart.scss';
+@import './variables.scss';
+@import './mixin.scss';
+@import './transition.scss';
+@import './element-ui.scss';
+@import './print.scss';
+
+body {
+  height: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+
+label {
+  font-weight: 700;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#app {
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.no-padding {
+  padding: 0px !important;
+}
+
+.padding-content {
+  padding: 4px 0;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+div:focus {
+  outline: none;
+}
+
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
+}
+
+.pr-5 {
+  padding-right: 5px;
+}
+
+.pl-5 {
+  padding-left: 5px;
+}
+
+.block {
+  display: block;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.inlineBlock {
+  display: block;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
+aside {
+  background: #eef1f6;
+  padding: 8px 24px;
+  margin-bottom: 20px;
+  border-radius: 2px;
+  display: block;
+  line-height: 32px;
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  color: #2c3e50;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  a {
+    color: #337ab7;
+    cursor: pointer;
+
+    &:hover {
+      color: rgb(32, 160, 255);
+    }
+  }
+}
+
+//main-container全局样式
+.app-container {
+  padding: 20px;
+}
+
+.components-container {
+  margin: 30px 50px;
+  position: relative;
+}
+
+.pagination-container {
+  margin-top: 30px;
+}
+
+.text-center {
+  text-align: center
+}
+.text-red{
+  color: $red;
+  cursor: pointer;
+}
+.text-pink{
+  color: $pink;
+  cursor: pointer;
+}
+.text-green{
+  color: $green;
+  cursor: pointer;
+}
+.text-light-green {
+  color: $panGreen;
+  cursor: pointer;
+}
+.text-yellow{
+  color: $yellow;
+  cursor: pointer;
+}
+.text-blue{
+  color: $blue;
+  cursor: pointer;
+}
+.text-light-blue{
+  color: $light-blue;
+  cursor: pointer;
+}
+
+.sub-navbar {
+  height: 50px;
+  line-height: 50px;
+  position: relative;
+  width: 100%;
+  text-align: right;
+  padding-right: 20px;
+  transition: 600ms ease position;
+  background: linear-gradient(90deg, rgba(32, 182, 249, 1) 0%, rgba(32, 182, 249, 1) 0%, rgba(33, 120, 241, 1) 100%, rgba(33, 120, 241, 1) 100%);
+
+  .subtitle {
+    font-size: 20px;
+    color: #fff;
+  }
+
+  &.draft {
+    background: #d0d0d0;
+  }
+
+  &.deleted {
+    background: #d0d0d0;
+  }
+}
+
+.link-type,
+.link-type:focus {
+  color: #337ab7;
+  cursor: pointer;
+
+  &:hover {
+    color: rgb(32, 160, 255);
+  }
+}
+
+.filter-container {
+  margin-bottom: 15px;
+
+  .filter-wrapper {
+
+    .el-form-item {
+      display: inline-flex;
+      vertical-align: middle;
+      margin-bottom: 15px;
+    }
+
+    &.display-inline {
+      .el-form, .el-button {
+        display: inline-block;
+      }
+      .el-button {
+        margin-bottom: 15px;
+      }
+      .el-col {
+        float: none;
+        width: auto;
+        display: inline-block;
+      }
+    }
+  }
+}
+.tools-container {
+  flex-shrink:0;
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 132px;
+  margin-bottom: 15px;
+  margin-top: -48px;
+
+  &.no-filter {
+    margin-left: 0;
+    margin-top: 0;
+  }
+}
+.handle-container.inline {
+    display: flex;
+    .filter-wrapper {
+      .el-form, .el-button {
+        display: inline-block;
+      }
+      .el-form-item {
+        margin-bottom: 0;
+      }
+      .el-button {
+        margin-bottom: 15px;
+      }
+      .el-col {
+        float: none;
+        width: auto;
+        display: inline-block;
+      }
+    }
+    .tools-container {
+      margin-left: 10px;
+      margin-top: inherit;
+
+    }
+}
+
+//refine vue-multiselect plugin
+.multiselect {
+  line-height: 16px;
+}
+
+.multiselect--active {
+  z-index: 1000 !important;
+}
+
+// drawer page
+.drawer-page {
+  width: 100%;
+  overflow-x: hidden;
+  .drawer-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    padding: 15px 20px;
+    background: #FFFFFF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    z-index: 6;
+  }
+  .drawer-content {
+    width: 100%;
+    max-height: 100vh;
+    padding: 80px 20px 68px 20px;
+    overflow-y: scroll;
+  }
+  .drawer-footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    padding: 15px 20px;
+    background: #FFFFFF;
+  }
+}
+.drawer-page.inline {
+  position: relative;
+  border-left: 5px solid #F9F9F9;
+  .drawer-header {
+    position: relative;
+    box-shadow: none;
+    padding: 5px 20px;
+    height: 40px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #F0F0F0;
+  }
+  .drawer-content {
+    max-height: inherit;
+    padding: 0px 20px 68px 20px;
+    overflow: visible;
+  }
+}
+
+.form-create {
+  .form-create {
+    .el-form-item {
+      margin-bottom: 15px !important;
+    }
+  }
+  .el-form-item {
+      .el-form-item {
+        padding-top: 1px !important;
+        margin-bottom: 1px !important;
+      }
+    }
+}
+
+.table-status {
+  .el-tabs__item {
+    padding: 0 10px;
+  }
+}
+

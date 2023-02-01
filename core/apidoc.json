@@ -1,0 +1,17 @@
+{
+    "title": "系统",
+    "name": "core",
+    "description": "系统核心模块接口",
+    "version": "v1.0.0",
+    "url": "http://admin.sourcedesign.cn/core/",
+    "sampleUrl": "http://admin.sourcedesign.cn/core/",
+    "order": ["账户","职位","部门","办事处","登录注册","权限菜单","权限分组","系统配置","系统日志","地区管理"],
+    "header": {
+        "title": "接口使用说明",
+        "filename": "apidoc.md"
+    },
+    "template": {
+        "withCompare": true,
+        "withGenerator": true
+    }
+}

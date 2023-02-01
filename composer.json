@@ -1,0 +1,65 @@
+{
+    "name": "simplestart/start-cms",
+    "description": "基于ThinkPHP V6开发的微应用管理系统",
+    "type": "project",
+    "keywords": [
+        "simplestart",
+        "framework",
+        "thinkphp",
+        "microapp",
+        "admin",
+        "cms",
+        "app"
+    ],
+    "homepage": "http://www.starcms.cn/",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Colber.Dun",
+            "email": "colber@simplestart.cn"
+        }     
+    ],
+    "require": {
+        "php": ">=7.4.0",
+        "simplestart/start-think": "^1.0.0",
+        "topthink/framework": "^6.0.0",
+        "topthink/think-orm": "^2.0",
+        "topthink/think-view": "^1.0",
+        "ext-bcmath": "*",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^4.2",
+        "topthink/think-trace":"^1.0",
+        "phpunit/phpunit": "^8.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "app\\": "app",
+            "core\\": "core"
+        },
+        "psr-0": {
+            "": "extend/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "easywechat-composer/easywechat-composer": true
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@php start service:discover",
+            "@php start vendor:publish"
+        ]
+    },
+    "repositories": {
+        "0": {
+        "type": "path",
+        "url": "../packages/start-think",
+        "options": {
+            "symlink": true
+        }
+    }}
+}

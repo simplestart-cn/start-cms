@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>StartCMS安装向导</title>
+    <link rel="icon" href="/favicon.svg">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <!-- 引入VUE -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <!-- 引入AXIOS -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <style type="text/css">
+        * {
+            box-sizing: border-box;
+        }
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+            min-height: 100%;
+            background-image: linear-gradient(45deg, rgb(0, 129, 255), rgb(28, 187, 180));
+        }
+        label:focus-visible{
+            outline: invert;
+        }
+        #app {
+            display: none;
+            position: relative;
+            min-height: 100%;
+        }
+        #app.visible {
+            display: block;
+        }
+
+        .shadow {
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
+        }
+
+        .el-header {
+            color: #FFF;
+            margin: 0 auto;
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        .el-header h2 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        .el-header p {
+            margin: 0;
+        }
+
+        .el-main {
+            padding-top: 0;
+            padding-bottom: 100px;
+        }
+
+        .install-form {
+            position: relative;
+            width: 350px;
+            margin: 0 auto;
+            overflow: hidden;
+
+        }
+
+        .install-form h5 {
+            margin: 25px 0 10px;
+            color: #FFF;
+        }
+
+        .install-success {
+            position: relative;
+            width: 350px;
+            margin: 35px auto;
+        }
+
+        .install-protocal {
+            color: #FFF;
+            margin-top: 10px;
+            background-color: #FFF;
+            padding: 10px 15px;
+            border-radius: 10px;
+            line-height: 1;
+        }
+
+        .install-protocal .el-checkbox__label {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .form-container {
+            padding: 20px 15px;
+            border-radius: 10px;
+            background-color: #FFF;
+        }
+
+        .form-tips {
+            padding-left: 20px;
+            margin-top: -10px;
+        }
+
+        .form-tips .el-checkbox__label {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .el-form-item {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            background: #FFF;
+            color: #262626;
+        }
+
+        .el-input {
+            display: inline-block;
+            height: 36px;
+        }
+
+        .el-input input {
+            background: transparent;
+            border: 0px;
+            -webkit-appearance: none;
+            border-radius: 0px;
+            padding: 12px 5px 12px 15px;
+            height: 47px;
+            color: #222222;
+            caret-color: #222222;
+        }
+
+        .el-input input::-webkit-autofill {
+            box-shadow: 0 0 0px 1000px #FFF inset !important;
+            -webkit-text-fill-color: #222222 !important;
+        }
+
+        .el-button {
+            padding: 15px 20px;
+        }
+
+        .copyright {
+            position: absolute;
+            right: 30px;
+            bottom: 30px;
+            color: #FFFfff;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .copyright a {
+            color: #FFF;
+            text-decoration: underline;
+        }
+
+        .license {
+            max-height: 600px;
+            overflow-y: scroll;
+            padding-right: 10px;
+        }
+
+        .license::-webkit-scrollbar {
+            width: 10px;
+            height: 1px;
+        }
+
+        .license::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+            background: #666;
+        }
+
+        .license::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            background: #EDEDED;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" :class="visible">
+        <el-container>
+            <el-header height="100">
+                <h2>STARTCMS</h2>
+                <p>极速微应用开发框架</p>
+            </el-header>
+            <el-main>
+                <el-result icon="success" class="install-success form-container" title="安装成功" sub-title="欢迎使用StartCMS极速微应用开发框架" v-if="isSuccess">
+                    <template slot="extra">
+                      <a href="/"><el-button type="primary" size="mini">返回首页</el-button></a>
+                    </template>
+                </el-result>
+                <el-form ref="form" :rules="formRules" hide-required-asterisk :show-message="false" :status-icon="true"
+                    :model="formData" label-width="100px" label-position="right" class="install-form" size="medium" v-else>
+                    <h5>创建 数据库</h5>
+                    <div class="form-container shadow">
+                        <el-form-item prop="dbname" label="数据库名称">
+                            <el-input v-model="formData.dbname" placeholder="数据库名称" name="dbname" type="text"
+                                tabindex="4" @blur="checkDatabase" />
+                        </el-form-item>
+                        <el-form-item prop="dbuser" label="数据库用户">
+                            <el-input v-model="formData.dbuser" placeholder="数据库用户" name="dbuser" type="text"
+                                tabindex="5" @blur="checkDatabase" />
+                        </el-form-item>
+                        <el-form-item prop="dbpass" label="数据库密码">
+                            <el-input v-model="formData.dbpass" placeholder="数据库密码" name="dbpass" type="password"
+                                tabindex="6" @blur="checkDatabase" />
+                        </el-form-item>
+                        <el-form-item prop="dbhost" label="数据库地址">
+                            <el-input v-model="formData.dbhost" placeholder="数据库地址" name="dbhost" type="text"
+                                tabindex="7" @blur="checkDatabase" />
+                        </el-form-item>
+                        <el-form-item prop="dbport" label="数据库端口">
+                            <el-input v-model="formData.dbport" placeholder="端口" name="dbport" type="text"
+                                tabindex="8" @blur="checkDatabase" />
+                        </el-form-item>
+                        <div class="form-tips">
+                            <el-link icon="el-icon-circle-check" :underline="false" type="success" v-if="dbcode == 0">{{dbmsg}}</el-link>
+                            <el-link icon="el-icon-circle-close" :underline="false" type="danger" v-if="dbcode == 1">{{dbmsg}}</el-link>
+                            <el-checkbox v-model="formData.dbcover" tabindex="9" v-if="dbcode == 2">
+                                <el-link :underline="false" type="warning">{{dbmsg}}</el-link>
+                            </el-checkbox>
+                        </div>
+                    </div>
+                    <h5>创建 管理员</h5>
+                    <div class="form-container shadow">
+                        <el-form-item prop="account" label="管理账户">
+                            <el-input v-model="formData.account" placeholder="用户名" name="account" type="text"
+                                tabindex="10" />
+                        </el-form-item>
+                        <el-form-item prop="password" label="登录密码">
+                            <el-input v-model="formData.password" placeholder="管理员密码" name="password" type="password"
+                                tabindex="11" @keyup.enter.native="handleInstall" />
+                        </el-form-item>
+                        <el-form-item prop="repassword" label="确认密码">
+                            <el-input v-model="formData.repassword" type="password" placeholder="再次输入密码"
+                                name="repassword" tabindex="12" @keyup.enter.native="handleInstall" />
+                        </el-form-item>
+                    </div>
+                    <div class="install-protocal shadow">
+                        <el-checkbox v-model="formData.protocal">同意<el-link @click.stop="dialog = true">《StartCMS授权使用协议》
+                            </el-link>
+                        </el-checkbox>
+                    </div>
+                    <el-button :loading="btnLoading" type="success" size="medium" style="width:100%;margin-top:30px;"
+                        @click.native.prevent="handleInstall">一键安装
+                    </el-button>
+                </el-form>
+                
+            </el-main>
+        </el-container>
+        <div class="copyright">Powered by <a href="http://www.startcms.cn" target="_blank">start-cms</a></div>
+        <el-dialog :visible.sync="dialog" width="600px" :close-on-click-modal="false">
+            <div class="license">
+                {{$licenses|raw}}
+            </div>
+        </el-dialog>
+    </div>
+</body>
+<script>
+    const { Message } = ELEMENT
+    var app = new Vue({
+        el: '#app',
+        data() {
+            const validateAccount = (rule, value, callback) => {
+                if (!value) {
+                    callback(new Error('用户名不能为空'))
+                } else {
+                    callback()
+                }
+            }
+            const validatePassword = (rule, value, callback) => {
+                if (!value) {
+                    callback(new Error('密码不能为空'))
+                } else {
+                    callback()
+                }
+            }
+            const validateRePassword = (rule, value, callback) => {
+                if (!value) {
+                    callback(new Error('请再次输入密码'))
+                } else {
+                    callback()
+                }
+            }
+            const validateDb = (rule, value, callback) => {
+                if (!value) {
+                    callback(new Error('不能为空'))
+                } else {
+                    callback()
+                }
+            }
+            return {
+                visible: false,
+                formData: {
+                    account: '',
+                    password: '',
+                    repassword: '',
+                    dbname: '',
+                    dbuser: '',
+                    dbpass: '',
+                    dbhost: 'localhost',
+                    dbport: '3306',
+                    protocal: false,
+                },
+                formRules: {
+                    dbname: [{ required: true, trigger: 'blur', validator: validateDb }],
+                    dbuser: [{ required: true, trigger: 'blur', validator: validateDb }],
+                    dbpass: [{ required: true, trigger: 'blur', validator: validateDb }],
+                    dbhost: [{ required: true, trigger: 'blur', validator: validateDb }],
+                    dbport: [{ required: true, trigger: 'blur', validator: validateDb }],
+                    account: [{ required: true, trigger: 'blur', validator: validateAccount }],
+                    password: [{ required: true, trigger: 'blur', validator: validatePassword }],
+                    repassword: [{ required: true, trigger: 'blur', validator: validateRePassword }],
+
+                },
+                dbcode: -1,
+                dbmsg: '',
+                dialog: false,
+                isSuccess: false,
+                btnLoading: false,
+            }
+        },
+        mounted() {
+            this.visible = 'visible'
+        },
+        methods: {
+            handleInstall() {
+                this.$refs.form.validate(valid => {
+                    if (valid) {
+                        this.btnLoading = true
+                        axios.post('/core/install', this.formData)
+                            .then(({ data }) => {
+                                this.btnLoading = false
+                                if (data.code === 0) {
+                                    this.isSuccess = true;
+                                }else{
+                                    Message.error(data.msg)
+                                } 
+                            })
+                            .catch((error) => {
+                                this.btnLoading = false
+                            });
+                    } else {
+                        return false
+                    }
+                })
+            },
+            checkDatabase() {
+                let that = this;
+                const { dbname, dbuser, dbpass, dbhost } = this.formData;
+                if (dbname && dbuser && dbpass && dbhost) {
+                    axios.post('/core/install/checkDb', this.formData)
+                        .then((res) => {
+                            this.dbcode = res.data.code;
+                            this.dbmsg = res.data.msg;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                }
+            }
+        }
+    })
+</script>
+
+</html>

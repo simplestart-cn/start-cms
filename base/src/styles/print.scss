@@ -1,0 +1,27 @@
+@media print {
+  .print-content {
+    padding: 50px;
+    .el-table {
+      width: 98% !important;
+    }
+  }
+  .contract-content {
+    .el-table--mini th,
+    .el-table--mini td {
+      padding: 0 !important;
+    }
+  }
+  @page {
+    size: auto;  /* auto is the initial value */
+    margin: 0mm; /* this affects the margin in the printer setting */
+  }
+}
+.contract-content {
+  .el-table--mini th,
+  .el-table--mini td {
+    padding: 0 !important;
+  }
+}
+.drawer-page {
+  overflow: auto;
+}

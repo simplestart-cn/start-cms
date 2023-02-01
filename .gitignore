@@ -1,0 +1,10 @@
+*.git
+/.idea
+/.vscode
+/vendor
+/runtime
+*apidoc
+*node_modules
+*.env
+*.log
+*.user.ini
