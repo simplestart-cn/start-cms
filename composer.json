@@ -21,7 +21,7 @@
     ],
     "require": {
         "php": ">=7.4.0",
-        "simplestart/start-think": "^1.0.0",
+        "simplestart/start-think": "^1.0.6",
         "topthink/framework": "^6.0.0",
         "topthink/think-orm": "^2.0",
         "topthink/think-view": "^1.0",
@@ -55,11 +55,11 @@
         ]
     },
     "repositories": {
-        "0": {
-        "type": "path",
-        "url": "../packages/start-think",
-        "options": {
-            "symlink": true
+        "packagist": {
+            "type": "composer",
+            "canonical": false,
+            "description": "阿里云镜像",
+            "url": "https://mirrors.aliyun.com/composer/"
         }
-    }}
+    }
 }

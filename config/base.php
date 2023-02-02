@@ -5,7 +5,7 @@
 
 return [
     // 接口地址
-    'api'              => 'store.simplestart.cn',
+    'api'              => 'startcms.cn',
     // 基座框架
     'frame'            => 'ThinkPHP',
     // 系统版本
