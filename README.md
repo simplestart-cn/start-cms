@@ -3,7 +3,7 @@ StartCMS是一个基于ThinkPHP6.0+、ElementUI、MicroApp的极速**微应用**
 前端不限技术栈，支持Vue2、Vue3、Vite、React、Rangular...  
 后端不限制语言，支持PHP、Java、Node、Python、Go、C#...    
 始终秉承 开源 开放 自由的理念  
-让我们简单地开始！  
+永久免费 不限商用  
 Simplestart!
 
 ## 主要特性
@@ -23,7 +23,7 @@ Simplestart!
 - 通用服务：模型自动关联，内置快速分页查询，列表查询，详情查询，数据更新及删除
 - 通用控制器：快速参数格式校验，安全验证可自动化完成CSRF安全验证
 ## 环境要求
-PHP >= 7.3.0  
+PHP >= 7.4.0  
 Mysql >= 5.6  
 Nginx 或 Apache 建议Nginx  
 Nginx 或 Apache 都需要配置伪静态   
@@ -35,14 +35,16 @@ Nginx 或 Apache 都需要配置伪静态
 ## 开发文档
 - [点击访问](http://doc.startcms.cn)
 
-## 开发部署
-1. [点击下载](https://github.com/simplestart-cn/start-cms/archive/refs/heads/main.zip) 或 ```git clone git@github.com:simplestart-cn/start-cms.git```
-2. 安装：```cd start-cms && composer install```
-3. 启动：
-   - 方式1(仅启动后端服务)：```php start run```
-   - 方式2(同时启动前后端)：```npm install && npm run dev```
+## 下载安装
+1. 下载
+ - [点击下载](https://github.com/simplestart-cn/start-cms/archive/refs/heads/master.zip) 纯净版（仅含框架代码，需要执行```composer install```）
+ - [点击下载](https://github.com/simplestart-cn/start-cms/archive/refs/heads/demo.zip) 完整版（内置示例应用，已执行过```composer install```）
+ - 命令下载 ```git clone git@github.com:simplestart-cn/start-cms.git```
+2. 安装：```composer install```
+3. 启动：```php start run```
+4. 访问：```http://localhost:8080```
 > 如果composer install失败，请尝试在命令行进行切换配置到国内源，命令如下  
-```composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/```
+> composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
 
 ## 正式部署
 > 一般内置服务已足以开发使用，当部署至服务器环境正式使用时需要进行如下配置
@@ -96,10 +98,15 @@ RewriteRule ^(.*)$ index.php?/$1 [QSA,PT,L]
 - LNMP环境（Linux + Nginx + Mysql + PHP）
   - 修改nginx.conf配件文件，添加以下内容
   ```
-    #禁止访问的文件或目录
+    # 禁止访问的文件
     location ~ ^/(\.env|\.user.ini|\.htaccess|\.git|\.svn|\.project)
     {
         return 404;
+    }
+    # 禁止访问的目录
+    location ~ ^/(?:build|tests|config|lib|vendor|extend)/
+    {
+        deny all;
     }
   ```
   - ...
