@@ -22,7 +22,7 @@
     "name": "vue2_dashboard",
     "node": "vue2/dashboard",
     "path": "/vue2/dashboard",
-    "view": "/page2/dashboard",
+    "view": "/dashboard",
     "parent": "vue2",
     "menu": 0,
     "hidden": 1
