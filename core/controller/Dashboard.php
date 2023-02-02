@@ -82,7 +82,7 @@ class Dashboard extends Base
 
     /**
      * 获取列表
-     * @admin
+     * @login
      *
      * @api            {get}           dashboard/list              获取列表
      * @apiName        list
@@ -105,6 +105,16 @@ class Dashboard extends Base
             $input['title@like'] =  $input['keyword'];
         }
         $data = DashboardService::getList($input, 'sort asc');
+        if(!$data->isEmpty()){
+            $user = get_user();
+            $data = $data->filter(function($item) use ($user){
+                if(in_array('all',$user['authorize'])){
+                    return true;
+                }else{
+                    return empty($item['auth']) || in_array($item['auth'], $user['authorize']);
+                }
+            });
+        }
         $this->success($data);
     }
 
