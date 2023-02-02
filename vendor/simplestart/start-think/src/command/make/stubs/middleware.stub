@@ -1,0 +1,26 @@
+<?php
+declare (strict_types = 1);
+// +----------------------------------------------------------------------
+// | Generate By StartCMS
+// +----------------------------------------------------------------------
+// | Github: https://github.com/simplestart-cn/start-cms
+// +----------------------------------------------------------------------
+// | Copyright (c) http://www.simplestart.cn All rights reserved.
+// +----------------------------------------------------------------------
+
+namespace {%namespace%};
+
+class {%className%}
+{
+    /**
+     * 处理请求
+     *
+     * @param \think\Request $request
+     * @param \Closure       $next
+     * @return Response
+     */
+    public function handle($request, \Closure $next)
+    {
+        //
+    }
+}

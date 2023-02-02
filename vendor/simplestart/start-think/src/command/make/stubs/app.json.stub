@@ -1,0 +1,21 @@
+{
+  "icon": "example",
+  "name": "{%appName%}",
+  "entry": "/{%appName%}/index",
+  "title": "{%appName%}应用",
+  "summary": "{%appName%}应用简介",
+  "description": "{%appName%}应用详情",
+  "version": "v1.0.0",
+  "author": "",
+  "licence": "",
+  "documentation": {
+    "guide": "使用手册",
+    "developer": "开发手册"
+  },
+  "dependencies": [],
+  "startcms": {
+    "min-version": "v1.0.0"
+  },
+  "auth": [],
+  "config": []
+}

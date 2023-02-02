@@ -1,0 +1,17 @@
+{
+  "title": "{%appName%}",
+  "name": "{%appName%}",
+  "description": "{%appName%}接口文档",
+  "version": "v1.0.0",
+  "url": "http://www.xxxxx.com/{%appName%}/",
+  "sampleUrl": "http://www.xxxxx.com/{%appName%}/",
+  "order": [],
+  "header": {
+    "title": "接口文档使用说明",
+    "filename": "apidoc.md"
+  },
+  "template": {
+    "withCompare": true,
+    "withGenerator": true
+  }
+}

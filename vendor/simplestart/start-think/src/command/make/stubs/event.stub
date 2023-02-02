@@ -1,0 +1,15 @@
+<?php
+declare (strict_types = 1);
+// +----------------------------------------------------------------------
+// | Generate By StartCMS
+// +----------------------------------------------------------------------
+// | Github: https://github.com/simplestart-cn/start-cms
+// +----------------------------------------------------------------------
+// | Copyright (c) http://www.simplestart.cn All rights reserved.
+// +----------------------------------------------------------------------
+
+namespace {%namespace%};
+
+class {%className%}
+{
+}

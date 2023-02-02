@@ -1,0 +1,39 @@
+{
+    "name": "simplestart/start-think",
+    "description": "Library For StartCMS",
+    "type": "library",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Colber.Dun",
+            "email": "colber@simplestart.cn",
+            "homepage": "http://www.simplestart.cn"
+        }
+    ],
+    "require": {
+        "ext-gd": "*",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-iconv": "*",
+        "nelexa/zip": "^3.3",
+        "symfony/var-exporter": "^4.4.13"
+    },
+    "replace": {
+        "topthink/think-multi-app": "^1.0"
+    },
+    "autoload": {
+        "files": [
+          "src/Function.php"
+        ],
+        "psr-4": {
+          "start\\": "src"
+        }
+    },
+    "extra": {
+        "think": {
+          "services": [
+            "start\\Library"
+          ]
+        }
+    }
+}
