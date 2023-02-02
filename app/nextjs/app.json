@@ -1,0 +1,21 @@
+{
+  "icon": "example",
+  "name": "nextjs",
+  "entry": "/app/nextjs/view",
+  "title": "Nextjs",
+  "summary": "Nextjs应用简介",
+  "description": "应用详情",
+  "version": "v1.0.0",
+  "author": "官方",
+  "licence": "",
+  "documentation": {
+    "guide": "使用手册",
+    "developer": "开发手册"
+  },
+  "dependencies": [],
+  "startcms": {
+    "min-version": "v1.0.0"
+  },
+  "auth": [],
+  "config": []
+}

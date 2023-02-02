@@ -1,0 +1,117 @@
+{
+	"icon": "message",
+	"name": "sms",
+	"title": "短信",
+	"summary": "提供短信验证，短信通知功能，已接通阿里云短信",
+	"description": "/README.md",
+	"version": "v1.0.0",
+	"category": ["content"],
+	"licence": "Apache2.0",
+	"author": "官方",
+	"namespace": "sms",
+	"documentation": {
+		"guide": "使用者手册",
+		"developer": "开发者手册"
+	},
+	"dependencies": ["其他应用依赖"],
+	"startcms": {
+		"min-version": "v1.0.0"
+	},
+	"auth": [],
+	"config": [{
+		"title": "短信平台",
+		"type": "radio",
+		"field": "engin",
+		"value": "aliyun",
+		"options": [
+			{
+				"value": "aliyun",
+				"label": "阿里云"
+			},
+			{
+				"value": "tencent",
+				"label": "腾讯云(未开通)"
+			}
+		],
+		"props": {},
+		"default": "aliyun",
+		"locking": true,
+		"protected": true
+	},
+	{
+		"type": "input",
+		"title": "短信签名",
+		"field": "aliyun_sign",
+		"value": "",
+		"options": [],
+		"props": {
+			"type": "text",
+			"placeholder": "短信中【】的内容，不包含【】"
+		},
+		"default": "",
+		"locking": true,
+		"protected": true,
+		"validate": [
+			{
+				"required": true,
+				"message": "不能为空"
+			}
+		]
+	},
+	{
+		"type": "input",
+		"title": "AccessKey",
+		"field": "aliyun_access_key",
+		"value": "",
+		"options": [],
+		"props": {
+			"type": "text",
+			"placeholder": "阿里云AccessKeyId"
+		},
+		"default": "",
+		"locking": true,
+		"protected": true,
+		"validate": [
+			{
+				"required": true,
+				"message": "不能为空"
+			}
+		]
+	},
+	{
+		"type": "input",
+		"title": "AccessSecret",
+		"field": "aliyun_access_secret",
+		"value": "",
+		"options": [],
+		"props": {
+			"type": "text",
+			"placeholder": "阿里云AccessKeySecret"
+		},
+		"default": "",
+		"locking": true,
+		"protected": true,
+		"validate": [
+			{
+				"required": true,
+				"message": "不能为空"
+			}
+		]
+	},
+	{
+		"type": "input",
+		"title": "注册验证模板",
+		"field": "register_code",
+		"value": "",
+		"options": [],
+		"props": {
+			"type": "text",
+			"placeholder": "短信通知模板CODE，如： SMS_224980169"
+		},
+		"default": "",
+		"remark": "模版内容:验证码${code}，您正在登录，若非本人操作，请勿泄露。",
+		"locking": true,
+		"protected": true,
+		"validate": []
+	}]
+}

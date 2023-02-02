@@ -1,0 +1,39 @@
+{
+  "icon": "example",
+  "name": "vue2",
+  "entry": "/vue2/index",
+  "title": "Vue2",
+  "summary": "Vue2应用简介",
+  "description": "应用详情",
+  "version": "v1.0.0",
+  "category": [],
+  "author": "官方",
+  "licence": "",
+  "documentation": {
+    "guide": "使用手册",
+    "developer": "开发手册"
+  },
+  "dependencies": [],
+  "startcms": {
+    "min-version": "v1.0.0"
+  },
+  "auth": [{
+    "title": "仪表盘权限",
+    "name": "vue2_dashboard",
+    "node": "vue2/dashboard",
+    "path": "/vue2/dashboard",
+    "view": "/page2/dashboard",
+    "parent": "vue2",
+    "menu": 0,
+    "hidden": 1
+  },{
+    "title": "自定义菜单",
+    "name": "vue2_page2",
+    "node": "vue2/page2",
+    "path": "/vue2/page2",
+    "view": "/page2/page",
+    "parent": "vue2",
+    "menu": 1
+  }],
+  "config": []
+}

@@ -1,0 +1,22 @@
+{
+  "icon": "example",
+  "name": "angular",
+  "entry": "/angular/index",
+  "title": "Angular",
+  "summary": "angular应用简介",
+  "description": "应用详情",
+  "version": "v1.0.0",
+  "category": [],
+  "author": "官方",
+  "licence": "",
+  "documentation": {
+    "guide": "使用手册",
+    "developer": "开发手册"
+  },
+  "dependencies": [],
+  "startcms": {
+    "min-version": "v1.0.0"
+  },
+  "auth": [],
+  "config": []
+}
