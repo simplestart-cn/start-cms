@@ -1,2 +1,17 @@
 User-agent: *
-Disallow:
+# CSS, JS, Images
+Allow: /app/*.css$
+Allow: /app/*.css?
+Allow: /app/*.js$
+Allow: /app/*.js?
+Allow: /app/*.gif
+Allow: /app/*.jpg
+Allow: /app/*.jpeg
+Allow: /app/*.png
+Allow: /app/*.svg
+# Directories
+Disallow: /base/
+Disallow: /core/
+Disallow: /config/
+Disallow: /extend/
+Disallow: /vendor/
