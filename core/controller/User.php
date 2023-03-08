@@ -660,4 +660,5 @@ class User extends Base
             $this->error('error');
         }
     }
+    
 }

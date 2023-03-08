@@ -10,6 +10,7 @@ return [
 
     // 缓存连接方式配置
     'stores'  => [
+        // 文件缓存
         'file' => [
             // 驱动方式
             'type'       => 'File',
@@ -24,6 +25,20 @@ return [
             // 序列化机制 例如 ['serialize', 'unserialize']
             'serialize'  => [],
         ],
-        // 更多的缓存连接
+        // redis缓存
+        'redis'   =>  [
+            // 驱动方式
+            'type'     => 'redis',
+            // 服务器地址
+            'host'     => env('redis.host', '127.0.0.1'),
+            // 服务器端口
+            'port'     => env('redis.port', '6379'),
+            // 服务器密码
+            'pass'     => env('redis.pass', ''),
+            // 缓存前缀
+            'prefix'   => env('redis.prefix', ''),
+            // 有效期，0表示永久缓存
+            'expire'   => env('redis.prefix', 0),
+        ],
     ],
 ];

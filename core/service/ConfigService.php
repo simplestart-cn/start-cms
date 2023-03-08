@@ -13,7 +13,7 @@
 namespace core\service;
 
 use start\Service;
-use start\AppService;
+use start\AppManager;
 use think\facade\Cache;
 
 /**
@@ -114,7 +114,7 @@ class ConfigService extends Service
         if (!empty($app)) {
             $filter['app'] = $app;
         } else {
-            $apps          = array_merge(AppService::getActive(), ['core']);
+            $apps          = array_merge(AppManager::getActive(), ['core']);
             $filter['app'] = ['in', $apps];
         }
         if (!empty($group)){

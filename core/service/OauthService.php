@@ -13,7 +13,8 @@ declare (strict_types = 1);
 namespace core\service;
 
 use start\Service;
-
+use app\applet\service\AppletService;
+use EasyWeChat\Factory;
 class OauthService extends Service
 {
     public $model = 'core\model\Oauth';
@@ -27,19 +28,18 @@ class OauthService extends Service
     {
         // 查询授权账户
         $authUser = false;
-        if (isset($authInfo['unionid']) && !empty($authInfo['unionid'])) {
+        if (isset($authInfo['union_id']) && !empty($authInfo['union_id'])) {
             $authUser = self::model()
                 ->withoutGlobalScope()
                 ->where('delete_time', '=', 0)
                 ->where(function ($query) use ($authInfo) {
-                    $query->where('unionid', '=', $authInfo['unionid'])->whereOr('openid', '=', $authInfo['openid']);
+                    $query->where('union_id', '=', $authInfo['union_id'])->whereOr('open_id', '=', $authInfo['open_id']);
                 })
                 ->find();
         } else {
-            $authUser = self::model()->withoutGlobalScope()->where(['openid' => $authInfo['openid'], 'delete_time' => 0])->find();
+            $authUser = self::model()->withoutGlobalScope()->where(['app_id' => $authInfo['app_id'], 'open_id' => $authInfo['open_id'], 'delete_time' => 0])->find();
         }
         $authUser = $authUser ?: self::model();
-
         // 查询系统账户
         $baseUser = false;
         if ($authUser && $authUser->user_id) {
@@ -48,7 +48,7 @@ class OauthService extends Service
         // 主账户已存在则登录并返回
         if ($baseUser && !$baseUser->delete_time) {
             $authUser->save($authInfo); // 更新信息
-            return UserService::keepLogin($baseUser, ['openid'  =>  $authInfo['openid'], 'unionid' => $authInfo['unionid'] ?? '']);
+            return UserService::keepLogin($baseUser, ['open_id'  =>  $authInfo['open_id'], 'union_id' => $authInfo['union_id'] ?? '']);
         }
         // 账户注册并登陆
         self::startTrans();
@@ -63,18 +63,21 @@ class OauthService extends Service
                     $baseUser = false;
                 }
             }
+    
             if(!$baseUser){
                 // 注册主账户
                 $baseUser = UserService::register($authInfo);
             }
+            
             // 注册授权账户
             if ($baseUser->id) {
                 $authInfo['user_id'] = $baseUser->id;
                 $authUser->save($authInfo);
             }
+            
             self::startCommit();
             // 登陆主账户
-            return UserService::keepLogin($baseUser, ['openid'  =>  $authInfo['openid'], 'unionid' => $authInfo['unionid'] ?? '']);
+            return UserService::keepLogin($baseUser, ['open_id'  =>  $authInfo['open_id'], 'union_id' => $authInfo['union_id'] ?? '']);
         } catch (\Exception $e) {
             self::startRollback();
             throw_error($e->getMessage());
@@ -94,7 +97,7 @@ class OauthService extends Service
             'client_type' => \request()->header('client-type') ?: '-',
             'plaform_type' => \request()->header('plaform-type') ?: '-'
         ];
-        return self::model()->where($filter)->value('openid');
+        return self::model()->where($filter)->value('open_id');
     }
 
     /**
@@ -110,6 +113,6 @@ class OauthService extends Service
             'client_type' => \request()->header('client-type') ?: '-',
             'plaform_type' => \request()->header('plaform-type') ?: '-'
         ];
-        return self::model()->where($filter)->value('unionid');
+        return self::model()->where($filter)->value('union_id');
     }
 }
