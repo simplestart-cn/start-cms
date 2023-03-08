@@ -185,15 +185,16 @@ class UserService extends Service
             'login_client' => \request()->header('client-type'),
             'login_count'  => $account->login_count + 1,
         ]);
+        // 检测账户
         // 追加登陆信息
         $account['token']        = start_encrypt($account->uuid);
         $account['timestamp']    = time();
         $account['authorize']    = $account->getAuthorize();
-        // 绑定授权信息
+        // 追加授权信息
         $oauth = OauthService::getInfo(['user_id' => $account['id']]);
         if ($oauth) {
-            $account['openid']  = $oauth->openid;
-            $account['unionid'] = $oauth->unionid;
+            $account['open_id']  = $oauth->open_id;
+            $account['union_id'] = $oauth->union_id;
         }
         // 隐藏隐私信息
         $data = $account->hidden([

@@ -121,8 +121,8 @@ class AuthService extends Service
     public function getOpenId($user_id = 0)
     {
         if (empty($user_id)) {
-            if ($this->user && isset($this->user['openid']) & !empty($this->user['openid'])) {
-                return $this->user['openid'];
+            if ($this->user && isset($this->user['open_id']) & !empty($this->user['open_id'])) {
+                return $this->user['open_id'];
             }
             throw_error(lang('not_login'), '', -2);
         }
@@ -142,8 +142,8 @@ class AuthService extends Service
     public function getUnionId($user_id = 0)
     {
         if (!$user_id) {
-            if ($this->user && isset($this->user['openid']) & !empty($this->user['openid'])) {
-                return $this->user['openid'];
+            if ($this->user && isset($this->user['union_id']) & !empty($this->user['union_id'])) {
+                return $this->user['union_id'];
             }
             throw_error(lang('not_login'), '', -2);
         }

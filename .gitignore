@@ -1,10 +1,12 @@
 *.git
+*.env
+*.log
+*apidoc
+*.user.ini
+*.DS_STORE
+*node_modules
 /.idea
 /.vscode
 /vendor
 /runtime
-*apidoc
-*node_modules
-*.env
-*.log
-*.user.ini
+
