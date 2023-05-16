@@ -49,7 +49,7 @@ class ExceptionHandle extends Handle
     public function report(Throwable $exception): void
     {
         // 记录请求参数
-        if(!empty($exception->getMessage())){
+        if (!empty($exception->getMessage())) {
             $req = \think\facade\Request::instance();
             Log::error([
                 'pathinfo' => $req->pathinfo(),
@@ -58,6 +58,17 @@ class ExceptionHandle extends Handle
                 'code'  => $exception->getCode(),
                 'msg'  => $exception->getMessage(),
             ]);
+        }
+        if (env('APP_DEBUG')) {
+            $req = \think\facade\Request::instance();
+            $client  = $req->header('client-type') ?: '-';
+            Log::info(json_encode([
+                'pathinfo' => $req->pathinfo(),
+                'method' => $req->method(),
+                'param' => $req->param(),
+                'user' => get_user_name(false),
+                'client' => $client
+            ]));
         }
         // 使用内置的方式记录异常日志
         parent::report($exception);
@@ -78,5 +89,4 @@ class ExceptionHandle extends Handle
         // 其他错误交给系统处理
         return parent::render($request, $e);
     }
-
 }

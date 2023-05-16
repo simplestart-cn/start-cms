@@ -105,7 +105,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .el-menu--horizontal > .menu-wrapper {
-    /deep/ .el-submenu__title,.submenu-title-noDropdown {
+    ::v-deep .el-submenu__title,.submenu-title-noDropdown {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -118,15 +118,15 @@ export default {
             color: inherit;
         }
     }
-    /deep/ .el-submenu__icon-arrow {
+    ::v-deep .el-submenu__icon-arrow {
         display: none;
     }
 }
 .el-menu--horizontal {
     .el-menu {
         .menu-wrapper {
-            /deep/ .el-menu-item,
-            /deep/.el-submenu__title {
+            ::v-deep .el-menu-item,
+            ::v-deep.el-submenu__title {
                 height: 42px;
                 line-height: 42px;
                 padding: 0 20px;

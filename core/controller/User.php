@@ -513,12 +513,12 @@ class User extends Base
     public function updateCurrent()
     {
         $input = $this->formValidate([
-            'account.default'    => '',
-            'password.default'   => '',
-            'repassword.default' => '',
-            'name.default'       => '',
-            'avatar.default'     => '',
-            'email.default'      => '',
+            'account.default'    => null,
+            'password.default'   => null,
+            'repassword.default' => null,
+            'name.default'       => null,
+            'avatar.default'     => null,
+            'email.default'      => null,
         ]);
         if (!empty($input['password'])) {
             if ($input['password'] !== $input['repassword']) {

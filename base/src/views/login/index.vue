@@ -343,18 +343,18 @@ $light_gray: #eee;
             font-weight: bold;
         }
 
-        /deep/.el-tabs__item {
+        ::v-deep.el-tabs__item {
             padding: 0 10px;
         }
-        /deep/.el-tabs__nav-wrap::after {
+        ::v-deep.el-tabs__nav-wrap::after {
             display: none;
         }
-        /deep/.el-form-item {
+        ::v-deep.el-form-item {
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             background: $light;
             color: #262626;
         }
-        /deep/.el-input {
+        ::v-deep.el-input {
             display: inline-block;
             height: 47px;
             width: 85%;
@@ -373,7 +373,7 @@ $light_gray: #eee;
                 }
             }
         }
-        /deep/.el-button {
+        ::v-deep.el-button {
             padding: 15px 20px;
         }
     }
