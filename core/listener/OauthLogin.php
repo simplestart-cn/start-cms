@@ -21,8 +21,14 @@ class OauthLogin
         if (empty($authInfo['open_id'] ?? '') && empty($authInfo['union_id'] ?? '')) {
             throw_error('open_id和union_id不能同时为空');
         }
+        if(!empty($authInfo['name'] ?? '')){
+            // 清除emote
+            $authInfo['name'] = preg_replace('/[\xf0-\xf7].{3}/', '', $authInfo['name']);
+        }else{
+            $authInfo['name'] = '匿名';
+        }
         $user = [
-            'name'         => preg_replace('/[\xf0-\xf7].{3}/', '', $authInfo['name']) ?? '匿名',
+            'name'         => $authInfo['name'],
             'avatar'       => $authInfo['avatar'] ?? '',
             'gender'       => $authInfo['gender'] ?? 0,
             'country'      => $authInfo['country'] ?? 0,
@@ -34,6 +40,6 @@ class OauthLogin
             'client_type'  => $authInfo['client_type'],
             'plaform_type' => $authInfo['plaform_type'],
         ];
-        OauthService::login($user);
+        return OauthService::login($user);
     }
 }

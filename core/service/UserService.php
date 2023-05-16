@@ -300,6 +300,10 @@ class UserService extends Service
         }, ARRAY_FILTER_USE_KEY);
         // 更新账户
         if ($model->save($input)) {
+            // 员工更新信息后需要更新缓存
+            if($model->id == get_user_id()){
+                self::keepLogin($model);
+            }
             return $model;
         }
     }

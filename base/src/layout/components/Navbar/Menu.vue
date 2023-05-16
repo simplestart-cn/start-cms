@@ -88,7 +88,7 @@ export default {
     border-bottom: none;
     display: flex;
 }
-.el-menu--horizontal /deep/ .el-menu--popup {
+.el-menu--horizontal ::v-deep .el-menu--popup {
     padding: 0;
 }
 </style>
